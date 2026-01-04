@@ -44,5 +44,5 @@ The project follows a structured data science workflow:
 ### 📊 Analysis Output
 Here is a sample of a linear regression model used for electrical cost prediction
 
-![Graph Description](linear rgs_output.png)
+![Graph Description](linear_rgs_output.png)
  
