@@ -8,5 +8,5 @@
 ### 📊 Analysis Output
 Here is a sample of a linear regression model used for electrical cost prediction
 
-![](linear_rgs.png)
+![](linear rgs_output.png)
  
