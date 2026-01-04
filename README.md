@@ -1,6 +1,6 @@
 # Programming Assignment
 ### 👤 Group Info:
-* **Group Name: Dapper Drake
+* Group Name: Dapper Drake
 * **Group members:** SHAMNATH GOPI NATHAN,NADTHACHAD VORAVUTH A/L NAI MUNG KUNNURUL,NAJIHAH BINTI NAZRI,YUVINRAJ A/L KOGULE KRISHNAN
 * **Course:**  SKEE 1033
 * **Section:** 17
