@@ -43,19 +43,19 @@ The project follows a structured data science workflow:
    Analysis:
     - **Regional Consumption Trends (Line Charts)Seasonality:
 
-Peak Usage: across all three regions (Rural, Suburban, Urban), there is a distinct seasonal pattern. Consumption consistently peaks around March, April, and May. This likely corresponds to the hottest months of the year in many regions, implying a heavy reliance on air conditioning or cooling systems.
+       Peak Usage: across all three regions (Rural, Suburban, Urban), there is a distinct seasonal pattern. Consumption consistently peaks around March, April, and May. This          likely corresponds to the hottest months of the year in many regions, implying a heavy reliance on air conditioning or cooling systems.
 
-Lowest Usage: Consumption consistently drops to its lowest points around September, October, and November. This suggests cooler weather or a transition period where HVAC usage is minimized.
+        Lowest Usage: Consumption consistently drops to its lowest points around September, October, and November. This suggests cooler weather or a transition period where            HVAC usage is minimized.
 
-Magnitude Differences:
-Urban (Green Line): Highest consumption, ranging roughly from 450 to 550 kWh. This makes sense given the higher density of appliances and likely larger homes or apartments in city centers.Suburban (Orange Line): Moderate consumption, generally between 350 and 470 kWh.Rural (Blue Line): Lowest consumption, hovering between 250 and 370 kWh.
-Yearly Consistency: The trends are remarkably consistent year-over-year (2018–2022). The lines for each year almost overlap, indicating that consumption habits are stable and primarily driven by external factors (like weather) rather than changing behavior.
+         Magnitude Differences:
+         Urban (Green Line): Highest consumption, ranging roughly from 450 to 550 kWh. This makes sense given the higher density of appliances and likely larger homes or                apartments in city centers.Suburban (Orange Line): Moderate consumption, generally between 350 and 470 kWh.Rural (Blue Line): Lowest consumption, hovering between 250          and 370 kWh.
+         Yearly Consistency: The trends are remarkably consistent year-over-year (2018–2022). The lines for each year almost overlap, indicating that consumption habits are             stable and primarily driven by external factors (like weather) rather than changing behavior.
 
 
  - ** Occupants vs. Consumption (Scatter Plot)
-Negative Correlation: This is the most surprising finding in our data. The scatter plot shows a clear downward trend. As the number of occupants increases (from 2 to 7), the electricity consumption tends to decrease.Households with 2 people often consume >500 kWh.Households with 7 people often consume <300 kWh.
-Potential Explanation: This is counter-intuitive (usually more people = more power). This could suggest a specific socioeconomic factor in our dataset. For example:
-Larger families might live in smaller, more energy-efficient rural homes.Smaller households (singles/couples) might live in large, high-consumption urban apartments with heavy AC usage.It could be a "per capita" efficiency, where shared resources (one fridge, one TV) lower the average, but the stark drop suggests a structural difference in the housing types.
+        Negative Correlation: This is the most surprising finding in our data. The scatter plot shows a clear downward trend. As the number of occupants increases (from 2 to           7), the electricity consumption tends to decrease.Households with 2 people often consume >500 kWh.Households with 7 people often consume <300 kWh.
+        Potential Explanation: This is counter-intuitive (usually more people = more power). This could suggest a specific socioeconomic factor in our dataset. For example:
+        Larger families might live in smaller, more energy-efficient rural homes.Smaller households (singles/couples) might live in large, high-consumption urban apartments            with heavy AC usage.It could be a "per capita" efficiency, where shared resources (one fridge, one TV) lower the average, but the stark drop suggests a structural              difference in the housing types.
 
 
 
