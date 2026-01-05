@@ -23,51 +23,67 @@ The analysis utilizes a dataset of monthly household electricity records with th
     * `Occupants`: Number of people in the household (used as a key correlation factor).
 
 ## 🛠️ Key Features & Methodology
-The project follows a structured data science workflow:
 
-1.  **🧹Data Cleaning (Pandas):** * Loading raw CSV data and handling missing values or inconsistencies to ensure analysis accuracy.
-     Task 1: Data Cleaning and Preparation The objective was to prepare a reliable dataset by addressing missing values and outliers. Missing electricity consumption and cost figures were filled using linear interpolation to preserve time-series trends, while missing occupant counts were imputed with regional medians to maintain realistic household structures without data loss. Additionally, outliers were managed using the Interquartile Range (IQR) method, replacing extreme values with the median to minimize distortion. These steps ensured the final dataset was complete, accurate, and ready for analysis.
-    
+The project follows a structured data science workflow to ensure accuracy and reproducibility.
 
-2.  **🔍Exploratory Data Analysis (NumPy & Pandas):** * Calculating statistical summaries and comparing consumption patterns across different regions.
-    * Performing **correlation analysis** to quantify the relationship between the number of occupants and electricity usage.
-  Task 2: Exploratory Data Analysis This phase focused on summarizing consumption patterns and validating key relationships. Summary statistics (mean, median, standard deviation) were calculated by region to establish baseline usage trends and variability. A Pearson correlation analysis was then conducted, which confirmed a positive correlation between household size and electricity consumption. This finding empirically justified including the number of occupants as a predictor variable for the subsequent modelling task.
+## 🧹 Task 1: Data Cleaning & Preparation (Pandas)
+**Objective:** To prepare a reliable dataset by addressing missing values, inconsistencies, and outliers.
 
-   
-3.  **📊Data Visualisation (Matplotlib):** * Generating bar charts to compare regional averages.
-    * Creating scatter plots to visualize the impact of household size on energy consumption.
-  Task 3: Data Visualisation.Visualisation techniques were applied to uncover underlying trends. **Line graphs** were used to track temporal consumption patterns, while a **multi-line plot** effectively demonstrated consistently higher usage in Urban regions compared to others. Additionally, a **scatter plot** visually confirmed the positive correlation between household size and electricity consumption, reinforcing the statistical findings from Task 2.
+* **Handling Missing Values:**
+    * **Electricity & Cost:** Filled using **linear interpolation**. This technique was selected to preserve time-series trends and seasonal continuity.
+    * **Occupant Counts:** Imputed using **regional medians**. This ensured that household structures remained realistic without discarding valuable data rows.
+* **Outlier Management:**
+    * Applied the **Interquartile Range (IQR)** method to detect extreme values.
+    * Outliers were replaced with the median to minimize statistical distortion while maintaining dataset integrity.
 
-   💡 Key Analysis Findings
-### 1. Regional Consumption Trends (Time-Series Analysis)
-Line charts were generated to track monthly consumption from 2018 to 2022.
+---
+
+## 🔍 Task 2: Exploratory Data Analysis (NumPy & Pandas)
+**Objective:** To summarize consumption patterns and validate statistical relationships between variables.
+
+* **Statistical Profiling:** Calculated summary statistics (mean, median, standard deviation) grouped by region to establish baseline usage trends.
+* **Correlation Analysis:** Conducted a Pearson correlation analysis to quantify the relationship between household size and electricity usage. This step empirically justified the inclusion of specific features (like occupant count) for the subsequent modelling task.
+
+---
+
+## 📊 Task 3: Data Visualization (Matplotlib)
+**Objective:** To uncover underlying trends through visual representation.
+
+* **Visual Techniques:**
+    * **Line Graphs:** Used to track temporal consumption patterns over the 5-year period.
+    * **Multi-line Plots:** Demonstrated the consumption disparity between Urban, Suburban, and Rural regions.
+    * **Scatter Plots:** Visualized the correlation between household size and energy consumption.
+
+### 💡 Key Analysis Findings
+
+**1. Regional Consumption Trends (Time-Series)**
 * **📈 Seasonal Patterns:**
-    * **Peak Usage:** Across all regions, consumption consistently spikes in **March, April, and May**. This correlates with the hottest months of the year, indicating a heavy load from air conditioning and cooling systems.
-    * **Troughs:** Usage drops to its lowest points in **September, October, and November**, suggesting cooler weather or a transition period with minimal HVAC reliance.
+    * **Peak Usage:** Across all regions, consumption consistently spikes in **March, April, and May**. This correlates with the hottest months, implying heavy reliance on air conditioning.
+    * **Troughs:** Usage drops to its lowest in **September, October, and November**, suggesting cooler weather or a transition period with minimal HVAC reliance.
 * **🏙️ Magnitude by Region:**
-    * **Urban (Green):** Highest consumption intensity, ranging from **450 to 550 kWh**. This is attributed to high-density living and potentially higher appliance usage.
-    * **Suburban (Orange):** Moderate consumption, fluctuating between **350 and 470 kWh**.
-    * **Rural (Blue):** Lowest consumption, maintaining a range of **250 to 370 kWh**.
-* **Yearly Consistency:** The trends are remarkably stable year-over-year. The overlapping lines indicate that consumption is driven primarily by external environmental factors (seasonality) rather than shifting consumer behavior.
+    * **Urban (Green):** Highest consumption (**450–550 kWh**), likely due to high-density living and appliance usage.
+    * **Suburban (Orange):** Moderate consumption (**350–470 kWh**).
+    * **Rural (Blue):** Lowest consumption (**250–370 kWh**).
+* **Yearly Consistency:** Trends are remarkably stable year-over-year, indicating consumption is driven primarily by external factors (seasonality) rather than shifting behavior.
 
-### 2. The Occupancy Anomaly (Scatter Plot Analysis)
-* **📉 Negative Correlation:** A scatter plot revealed a counter-intuitive finding: **As household size increases, electricity consumption decreases.**
-    * **2-Person Households:** Frequently consume **>500 kWh**.
-    * **7-Person Households:** Frequently consume **<300 kWh**.
- * **Discussion:** While usually more people equate to higher power usage, this dataset suggests a socioeconomic or structural driver. It implies that larger families may      reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.
+**2. The Occupancy Anomaly (Scatter Plot)**
+* **📉 Negative Correlation:** The scatter plot revealed a counter-intuitive finding: **As household size increases, electricity consumption decreases.**
+    * *2-Person Households:* Frequently consume **>500 kWh**.
+    * *7-Person Households:* Frequently consume **<300 kWh**.
+* **Discussion:** This suggests a socioeconomic driver. Larger families in this dataset may reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.
 
+---
 
-4. ## 🤖 Task 4: Predictive Modelling (Scikit-Learn):** * Building a **Linear Regression model** to forecast electricity costs (`Cost_RM`).
-    * Uses `Consumption_kWh` and `Occupants` as predictor variables to estimate bills with high accuracy.
-Task 4: Predictive Modelling A Linear Regression model was developed to predict monthly electricity costs using consumption and occupancy data. This algorithm was chosen due to the direct proportional relationship between usage and cost. The data was split 80:20 for training and testing to ensure unbiased evaluation. Performance was assessed using R-squared and Mean Absolute Error (MAE), yielding strong results that confirmed the model's accuracy. An Actual vs. Predicted plot further validated the model, with data points clustering closely around the perfect prediction line, demonstrating high reliability and low error rates.
+## 🤖 Task 4: Predictive Modelling (Scikit-Learn)
+**Objective:** To build a Linear Regression model to forecast electricity costs (`Cost_RM`).
 
+* **Model Selection:** **Linear Regression** was chosen due to the direct proportional relationship between usage and cost.
+* **Training:** Data was split **80:20** for training and testing to ensure unbiased evaluation.
+* **Predictors:** Uses `Consumption_kWh` and `Occupants` to estimate bills.
 
-💡 Key Analysis Findings
 ### 📉 Performance Evaluation
-The model's performance was evaluated using the **Coefficient of Determination ($R^2$)** and **Mean Absolute Error (MAE)**. The visual analysis of the *Actual vs. Predicted* plot demonstrates exceptional accuracy:
+The model's performance was evaluated using the **Coefficient of Determination ($R^2$)** and **Mean Absolute Error (MAE)**.
 
-* **Tight Clustering:** The predicted points (blue dots) align almost perfectly along the $y=x$ red dashed line (Perfect Prediction).
+* **Tight Clustering:** The *Actual vs. Predicted* plot shows predicted points (blue dots) aligning almost perfectly along the $y=x$ red dashed line (Perfect Prediction).
 * **Low Variance:** There are minimal outliers. For example, at an actual cost of **200 RM**, the model predicts almost exactly **200 RM**.
-* **Conclusion:** The high linearity between consumption and cost allowed the Linear Regression model to achieve near-perfect predictive accuracy, making it a reliable tool for forecasting electricity bills based on usage and household data.
-
- 
+* **Conclusion:** The high linearity between consumption and cost allowed the model to achieve near-perfect predictive accuracy, making it a reliable tool for forecasting electricity bills.
