@@ -5,7 +5,7 @@
 * **Course:**  SKEE 1033
 * **Section:** 17
 * **Lecturer:** ASSOC PROF MUHAMMAD MUN`IM AHMAD ZABIDI
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1rLosb8v08-_bOQQ8Y6nYeTNnFoU_j-XA?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Shamnath16/Electricity-Consumption-and-Cost-Analysis-SKE1033-Assignment/blob/main/Assignment.ipynb)
 # ⚡ Electricity Consumption and Cost Analysis
 
 ## 📌 Project Overview
