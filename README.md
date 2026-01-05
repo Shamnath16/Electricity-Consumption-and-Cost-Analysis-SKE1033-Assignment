@@ -25,48 +25,49 @@ The analysis utilizes a dataset of monthly household electricity records with th
 ## 🛠️ Key Features & Methodology
 The project follows a structured data science workflow:
 
-1.  **Data Cleaning (Pandas):** * Loading raw CSV data and handling missing values or inconsistencies to ensure analysis accuracy.
+1.  **🧹Data Cleaning (Pandas):** * Loading raw CSV data and handling missing values or inconsistencies to ensure analysis accuracy.
      Task 1: Data Cleaning and Preparation The objective was to prepare a reliable dataset by addressing missing values and outliers. Missing electricity consumption and cost figures were filled using linear interpolation to preserve time-series trends, while missing occupant counts were imputed with regional medians to maintain realistic household structures without data loss. Additionally, outliers were managed using the Interquartile Range (IQR) method, replacing extreme values with the median to minimize distortion. These steps ensured the final dataset was complete, accurate, and ready for analysis.
     
 
-
-2.  **Exploratory Data Analysis (NumPy & Pandas):** * Calculating statistical summaries and comparing consumption patterns across different regions.
+2.  **🔍Exploratory Data Analysis (NumPy & Pandas):** * Calculating statistical summaries and comparing consumption patterns across different regions.
     * Performing **correlation analysis** to quantify the relationship between the number of occupants and electricity usage.
   Task 2: Exploratory Data Analysis This phase focused on summarizing consumption patterns and validating key relationships. Summary statistics (mean, median, standard deviation) were calculated by region to establish baseline usage trends and variability. A Pearson correlation analysis was then conducted, which confirmed a positive correlation between household size and electricity consumption. This finding empirically justified including the number of occupants as a predictor variable for the subsequent modelling task.
 
-
    
-3.  **Data Visualisation (Matplotlib):** * Generating bar charts to compare regional averages.
+3.  **📊Data Visualisation (Matplotlib):** * Generating bar charts to compare regional averages.
     * Creating scatter plots to visualize the impact of household size on energy consumption.
   Task 3: Data Visualisation.Visualisation techniques were applied to uncover underlying trends. **Line graphs** were used to track temporal consumption patterns, while a **multi-line plot** effectively demonstrated consistently higher usage in Urban regions compared to others. Additionally, a **scatter plot** visually confirmed the positive correlation between household size and electricity consumption, reinforcing the statistical findings from Task 2.
 
-   Analysis:
-    - **Regional Consumption Trends (Line Charts)Seasonality:
+   💡 Key Analysis Findings
+### 1. Regional Consumption Trends (Time-Series Analysis)
+Line charts were generated to track monthly consumption from 2018 to 2022.
+* **📈 Seasonal Patterns:**
+    * **Peak Usage:** Across all regions, consumption consistently spikes in **March, April, and May**. This correlates with the hottest months of the year, indicating a heavy load from air conditioning and cooling systems.
+    * **Troughs:** Usage drops to its lowest points in **September, October, and November**, suggesting cooler weather or a transition period with minimal HVAC reliance.
+* **🏙️ Magnitude by Region:**
+    * **Urban (Green):** Highest consumption intensity, ranging from **450 to 550 kWh**. This is attributed to high-density living and potentially higher appliance usage.
+    * **Suburban (Orange):** Moderate consumption, fluctuating between **350 and 470 kWh**.
+    * **Rural (Blue):** Lowest consumption, maintaining a range of **250 to 370 kWh**.
+* **Yearly Consistency:** The trends are remarkably stable year-over-year. The overlapping lines indicate that consumption is driven primarily by external environmental factors (seasonality) rather than shifting consumer behavior.
 
-       Peak Usage: across all three regions (Rural, Suburban, Urban), there is a distinct seasonal pattern. Consumption consistently peaks around March, April, and May. This          likely corresponds to the hottest months of the year in many regions, implying a heavy reliance on air conditioning or cooling systems.
-
-        Lowest Usage: Consumption consistently drops to its lowest points around September, October, and November. This suggests cooler weather or a transition period where            HVAC usage is minimized.
-
-         Magnitude Differences:
-         Urban (Green Line): Highest consumption, ranging roughly from 450 to 550 kWh. This makes sense given the higher density of appliances and likely larger homes or                apartments in city centers.Suburban (Orange Line): Moderate consumption, generally between 350 and 470 kWh.Rural (Blue Line): Lowest consumption, hovering between 250          and 370 kWh.
-         Yearly Consistency: The trends are remarkably consistent year-over-year (2018–2022). The lines for each year almost overlap, indicating that consumption habits are             stable and primarily driven by external factors (like weather) rather than changing behavior.
+### 2. The Occupancy Anomaly (Scatter Plot Analysis)
+* **📉 Negative Correlation:** A scatter plot revealed a counter-intuitive finding: **As household size increases, electricity consumption decreases.**
+    * **2-Person Households:** Frequently consume **>500 kWh**.
+    * **7-Person Households:** Frequently consume **<300 kWh**.
+* **Discussion:** While usually more people equate to higher power usage, this dataset suggests a socioeconomic or structural driver. It implies that larger families may reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.
 
 
- - ** Occupants vs. Consumption (Scatter Plot)
-        Negative Correlation: This is the most surprising finding in our data. The scatter plot shows a clear downward trend. As the number of occupants increases (from 2 to           7), the electricity consumption tends to decrease.Households with 2 people often consume >500 kWh.Households with 7 people often consume <300 kWh.
-        Potential Explanation: This is counter-intuitive (usually more people = more power). This could suggest a specific socioeconomic factor in our dataset. For example:
-        Larger families might live in smaller, more energy-efficient rural homes.Smaller households (singles/couples) might live in large, high-consumption urban apartments            with heavy AC usage.It could be a "per capita" efficiency, where shared resources (one fridge, one TV) lower the average, but the stark drop suggests a structural              difference in the housing types.
-
-
-
-4.  **Predictive Modelling (Scikit-Learn):** * Building a **Linear Regression model** to forecast electricity costs (`Cost_RM`).
+4.  **🤖Predictive Modelling (Scikit-Learn):** * Building a **Linear Regression model** to forecast electricity costs (`Cost_RM`).
     * Uses `Consumption_kWh` and `Occupants` as predictor variables to estimate bills with high accuracy.
 Task 4: Predictive Modelling A Linear Regression model was developed to predict monthly electricity costs using consumption and occupancy data. This algorithm was chosen due to the direct proportional relationship between usage and cost. The data was split 80:20 for training and testing to ensure unbiased evaluation. Performance was assessed using R-squared and Mean Absolute Error (MAE), yielding strong results that confirmed the model's accuracy. An Actual vs. Predicted plot further validated the model, with data points clustering closely around the perfect prediction line, demonstrating high reliability and low error rates.
 
 
-Analysis:
- -** Linear Regression Model Performance
+💡 Key Analysis Findings
+### 📉 Performance Evaluation
+The model's performance was evaluated using the **Coefficient of Determination ($R^2$)** and **Mean Absolute Error (MAE)**. The visual analysis of the *Actual vs. Predicted* plot demonstrates exceptional accuracy:
 
-High Accuracy: The blue dots (Predicted Points) are tightly clustered around the red dashed line (Perfect Prediction $y=x$).Implication: Model is performing exceptionally well. There are very few outliers.For example, when the Actual Cost is 200 RM, our model predicts almost exactly 200 RM.The variance seems slightly higher in the middle range (around 225 RM), where one point deviates slightly, but overall, the $R^2$ score (coefficient of determination) for this model would likely be very close to 1.0 (or >0.95).Conclusion: The features we selected for our model (likely including 'Region' and 'Month' given their strong influence) are excellent predictors of electricity cost.
+* **Tight Clustering:** The predicted points (blue dots) align almost perfectly along the $y=x$ red dashed line (Perfect Prediction).
+* **Low Variance:** There are minimal outliers. For example, at an actual cost of **200 RM**, the model predicts almost exactly **200 RM**.
+* **Conclusion:** The high linearity between consumption and cost allowed the Linear Regression model to achieve near-perfect predictive accuracy, making it a reliable tool for forecasting electricity bills based on usage and household data.
 
  
