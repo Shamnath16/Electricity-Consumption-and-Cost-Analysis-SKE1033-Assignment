@@ -54,11 +54,10 @@ Line charts were generated to track monthly consumption from 2018 to 2022.
 * **📉 Negative Correlation:** A scatter plot revealed a counter-intuitive finding: **As household size increases, electricity consumption decreases.**
     * **2-Person Households:** Frequently consume **>500 kWh**.
     * **7-Person Households:** Frequently consume **<300 kWh**.
-* **Discussion:** While usually more people equate to higher power usage, this dataset suggests a socioeconomic or structural driver. It implies that larger families may reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.
+ * **Discussion:** While usually more people equate to higher power usage, this dataset suggests a socioeconomic or structural driver. It implies that larger families may      reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.
 
 
-
-4.  **🤖Predictive Modelling (Scikit-Learn):** * Building a **Linear Regression model** to forecast electricity costs (`Cost_RM`).
+4. ## 🤖 Task 4: Predictive Modelling (Scikit-Learn):** * Building a **Linear Regression model** to forecast electricity costs (`Cost_RM`).
     * Uses `Consumption_kWh` and `Occupants` as predictor variables to estimate bills with high accuracy.
 Task 4: Predictive Modelling A Linear Regression model was developed to predict monthly electricity costs using consumption and occupancy data. This algorithm was chosen due to the direct proportional relationship between usage and cost. The data was split 80:20 for training and testing to ensure unbiased evaluation. Performance was assessed using R-squared and Mean Absolute Error (MAE), yielding strong results that confirmed the model's accuracy. An Actual vs. Predicted plot further validated the model, with data points clustering closely around the perfect prediction line, demonstrating high reliability and low error rates.
 
