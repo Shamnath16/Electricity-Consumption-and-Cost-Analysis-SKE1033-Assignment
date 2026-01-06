@@ -52,7 +52,7 @@ The project follows a structured data science workflow to ensure accuracy and re
 * **Visual Techniques:**
     * **Line Graphs:** Used to track temporal consumption patterns over the 5-year period.
     * **Multi-line Plots:** Demonstrated the consumption disparity between Urban, Suburban, and Rural regions.
-    * **Scatter Plots:** Visualized the correlation between household size and energy consumption.
+    * **Scatter and Box Plots :** Visualized the correlation between household size and energy consumption.
 
 ### 💡 Key Analysis Findings
 
