@@ -52,7 +52,7 @@ The project follows a structured data science workflow to ensure accuracy and re
 * **Visual Techniques:**
     * **Line Graphs:** Used to track temporal consumption patterns over the 5-year period.
     * **Multi-line Plots:** Demonstrated the consumption disparity between Urban, Suburban, and Rural regions.
-    * **Scatter and Box Plots :** Visualized the correlation between household size and energy consumption.
+    * **Scattered Box Plot :** Visualized the correlation between household size and energy consumption.
 
 ### 💡 Key Analysis Findings
 
@@ -70,8 +70,8 @@ The project follows a structured data science workflow to ensure accuracy and re
 * **📉 Negative Correlation:** The scatter plot revealed a counter-intuitive finding: **As household size increases, electricity consumption decreases.**
     * *2-Person Households:* Frequently consume **>500 kWh**.
     * *7-Person Households:* Frequently consume **<300 kWh**.
-* **Discussion:** This suggests a socioeconomic driver. Larger families in this dataset may reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.
-
+* **Discussion:** This suggests a socioeconomic driver. Larger families in this dataset may reside in rural, energy-efficient (or non-AC reliant) homes, while smaller households (singles/couples) likely inhabit high-consumption urban apartments with heavy cooling requirements.For example larger families(>=5people) residing in
+landed properties while smaller families and couples in apartments or condos.As number of occupants increases,the average consumption per person decreases.
 ---
 
 ## 🤖 Task 4: Predictive Modelling (Scikit-Learn)
@@ -79,11 +79,13 @@ The project follows a structured data science workflow to ensure accuracy and re
 
 * **Model Selection:** **Linear Regression** was chosen due to the direct proportional relationship between usage and cost.
 * **Training:** Data was split **80:20** for training and testing to ensure unbiased evaluation.
-* **Predictors:** Uses `Consumption_kWh` and `Occupants` to estimate bills.
+* **Predictors:** Uses Occupants, Month, and Region as the input features to predict the consumption
 
-### 📉 Performance Evaluation
-The model's performance was evaluated using the **Coefficient of Determination ($R^2$)** and **Mean Absolute Error (MAE)**.
+### 📉1. Predictive Analysis: 
 
-* **Tight Clustering:** The *Actual vs. Predicted* plot shows predicted points (blue dots) aligning almost perfectly along the $y=x$ red dashed line (Perfect Prediction).
-* **Low Variance:** There are minimal outliers. For example, at an actual cost of **200 RM**, the model predicts almost exactly **200 RM**.
-* **Conclusion:** The high linearity between consumption and cost allowed the model to achieve near-perfect predictive accuracy, making it a reliable tool for forecasting electricity bills.
+Model vs. Actual Data
+Observation:The Linear Regression model acts as a "smoothing" filter over the raw data observed in Task 3.In Task 3 (Actual Data): The scatter plots and line graphs show significant variance (noise). Even for the same month or number of occupants, electricity consumption fluctuates wildly due to unmeasured factors (e.g., individual habits, appliance efficiency).In Task 4 (Model Prediction): The dashed lines (on the monthly graph) and red 'X' marks (on the box plot) represent the expected average behavior. The model successfully captures the seasonal "U-shape" (higher usage in early/late months, lower in the middle) and the linear increase with occupancy.Conclusion:While the model cannot predict random daily spikes (outliers), its high $R^2$ value indicates it is highly reliable for forecasting baseline consumption trends. It confirms that Occupancy and Month are the strongest predictors of electricity usage.
+
+2. Cognitive Analysis: The "Why" Behind the PatternsThis section explains the reasons for the patterns detected by the model.The "Pandemic Effect" (2020–2022): The data likely shows elevated consumption during these years compared to 2018–2019. This is attributed to the COVID-19 Movement Control Orders (MCO). With students and families confined indoors for online classes and remote work, household energy density (lights, AC, computers) increased drastically during daylight hours, which were previously periods of low usage.Seasonal Spikes: The model captures peaks in specific months (likely mid-year or year-end). In the context of Malaysia/tropical climates, this correlates with Monsoon seasons (people staying indoors due to rain) or Heatwaves (increased air-conditioning load).Urban vs. Rural Disparity: The model assigns higher "weights" to Urban regions. This cognitive link suggests that urban households possess more energy-intensive appliances (dryers, multiple AC units, gaming PCs) compared to rural households, even if the number of occupants is the same.
+
+3. Prescriptive Analysis: Recommendations for ActionBased on the predictive trends, we can prescribe specific engineering or policy solutions:For High-Occupancy Homes: Since the model predicts a sharp linear rise in cost for homes with >5 occupants, these households should be targeted for energy audits. Installing smart meters to track real-time usage could help these users identify and reduce waste.Seasonal Load Balancing: Since consumption peaks predictably in specific months, utility providers could introduce Time-of-Use (ToU) tariffs during these peak months, encouraging users to shift heavy usage (like washing machines) to off-peak hours to lower the grid burden.Post-Pandemic Infrastructure: With hybrid study/work becoming the norm (sustaining the 2022 high-usage trend), future housing projects should integrate passive cooling designs (better ventilation, insulation) to reduce the reliance on air-conditioning, which is the primary driver of the consumption identified by the model.
